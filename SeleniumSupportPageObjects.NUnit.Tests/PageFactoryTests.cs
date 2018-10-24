@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SeleniumSupportPageObjects.NUnit.Tests
 {
     [TestFixture]
-    public class TestClass
+    public class PageFactoryTests
     {
         [Test]
         public void TestMethod()
