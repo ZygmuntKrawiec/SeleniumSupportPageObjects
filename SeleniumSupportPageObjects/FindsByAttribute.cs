@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace SeleniumSupportPageObjects
 {
-    class FindsByAttribute
+    public class FindsByAttribute : Attribute
     {
+        public How MyProperty { get; set; }
+        public string Using { get; set; }
     }
 }
