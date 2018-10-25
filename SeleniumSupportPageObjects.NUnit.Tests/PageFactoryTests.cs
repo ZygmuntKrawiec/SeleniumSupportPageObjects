@@ -1,9 +1,13 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Moq;
+using OpenQA.Selenium;
+using SeleniumSupportPageObjects.NUnit.Tests.PageFactoryConfig;
 
 namespace SeleniumSupportPageObjects.NUnit.Tests
 {
@@ -11,10 +15,18 @@ namespace SeleniumSupportPageObjects.NUnit.Tests
     public class PageFactoryTests
     {
         [Test]
-        public void TestMethod()
+        public void InitElements_GetsDriverAndPage_SetsPageIWebElementProperty()
         {
-            // TODO: Add your test code here
-            Assert.Pass("Your first passing test");
+            var driver = new Mock<ISearchContext>();            
+            var webElementStub = new WebElementStub("Test");
+            var pageStub = new PageStub();
+            driver.Setup(d => d.FindElement(It.IsAny<By>())).Returns<By>(w => webElementStub);
+
+            PageFactory.InitElements(driver.Object, pageStub);
+
+            Assert.AreEqual(webElementStub.Text, pageStub.IWebElement.Text);
+
+
         }
     }
 }
