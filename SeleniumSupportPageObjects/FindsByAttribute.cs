@@ -8,7 +8,7 @@ namespace SeleniumSupportPageObjects
 {
     public class FindsByAttribute : Attribute
     {
-        public How MyProperty { get; set; }
+        public How How { get; set; }
         public string Using { get; set; }
     }
 }
