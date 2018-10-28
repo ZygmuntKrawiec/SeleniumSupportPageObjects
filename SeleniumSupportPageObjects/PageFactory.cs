@@ -33,36 +33,42 @@ namespace SeleniumSupportPageObjects
         private static IWebElement initialiseElement(ISearchContext driver, FindsByAttribute attribute)
         {
             IWebElement returnElement = null;
-            switch (attribute.How)
+            try
             {
-                case How.Id:
-                    returnElement = driver.FindElement(By.Id(attribute.Using));
-                    break;
-                case How.Name:
-                    returnElement = driver.FindElement(By.Name(attribute.Using));
-                    break;
-                case How.TagName:
-                    returnElement = driver.FindElement(By.TagName(attribute.Using));
-                    break;
-                case How.ClassName:
-                    returnElement = driver.FindElement(By.ClassName(attribute.Using));
-                    break;
-                case How.CssSelector:
-                    returnElement = driver.FindElement(By.CssSelector(attribute.Using));
-                    break;
-                case How.LinkText:
-                    returnElement = driver.FindElement(By.LinkText(attribute.Using));
-                    break;
-                case How.PartialLinkText:
-                    returnElement = driver.FindElement(By.PartialLinkText(attribute.Using));
-                    break;
-                case How.XPath:
-                    returnElement = driver.FindElement(By.XPath(attribute.Using));
-                    break;
-                case How.Custom:
-                    break;
+                switch (attribute.How)
+                {
+                    case How.Id:
+                        returnElement = driver.FindElement(By.Id(attribute.Using));
+                        break;
+                    case How.Name:
+                        returnElement = driver.FindElement(By.Name(attribute.Using));
+                        break;
+                    case How.TagName:
+                        returnElement = driver.FindElement(By.TagName(attribute.Using));
+                        break;
+                    case How.ClassName:
+                        returnElement = driver.FindElement(By.ClassName(attribute.Using));
+                        break;
+                    case How.CssSelector:
+                        returnElement = driver.FindElement(By.CssSelector(attribute.Using));
+                        break;
+                    case How.LinkText:
+                        returnElement = driver.FindElement(By.LinkText(attribute.Using));
+                        break;
+                    case How.PartialLinkText:
+                        returnElement = driver.FindElement(By.PartialLinkText(attribute.Using));
+                        break;
+                    case How.XPath:
+                        returnElement = driver.FindElement(By.XPath(attribute.Using));
+                        break;
+                    case How.Custom:
+                        break;
+                }
             }
-
+            catch(NoSuchElementException)
+            {
+                return null;
+            }
             return returnElement;
         }
     }
