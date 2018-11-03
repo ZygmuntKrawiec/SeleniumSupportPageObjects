@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SeleniumSupportPageObjects.PageObjectModel
 {
-    class POMTypeCreator
+    public class POMTypeCreator : IDisposable
     {
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
