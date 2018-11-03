@@ -127,7 +127,10 @@ namespace SeleniumSupportPageObjects.PageObjectModel
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _typeBulider = null;
+            _ctor0 = null;
+            _createdType = null;
+            _listOfProperties = null;
         }
     }
 }
