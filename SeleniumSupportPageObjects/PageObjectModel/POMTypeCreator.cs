@@ -70,6 +70,21 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             _listOfProperties.Add(PFContainer);
         }
 
+        public void CreateType()
+        {
+            if (_listOfProperties.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var pFContainer in _listOfProperties)
+            {
+                generateNewProperty(pFContainer);
+            }
+            _createdType = _typeBulider.CreateType();
+            _listOfAllTypes.Add(_createdType);
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
