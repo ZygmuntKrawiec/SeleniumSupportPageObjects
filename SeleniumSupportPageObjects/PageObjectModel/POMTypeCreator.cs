@@ -132,5 +132,14 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             _createdType = null;
             _listOfProperties = null;
         }
+
+        public static void SaveAssembly()
+        {
+            _assemblyBuilder.Save(_assemblyName.Name + ".dll");
+            _assemblyName = null;
+            _assemblyBuilder = null;
+            _moduleBuilder = null;
+            _listOfAllTypes.Clear();
+        }
     }
 }
