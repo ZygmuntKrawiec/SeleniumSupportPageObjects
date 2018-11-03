@@ -20,10 +20,14 @@ namespace SeleniumSupportPageObjects.PageObjectModel
         private Type _createdType;
         private List<PropertiesFeaturesContainer> _listOfProperties;
 
+        static POMTypeCreator()
+        {
+            _listOfAllTypes = new List<Type>();
+        }
 
         public void Dispose()
         {
             throw new NotImplementedException();
-        }       
+        }
     }
 }
