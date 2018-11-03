@@ -24,6 +24,6 @@ namespace SeleniumSupportPageObjects.PageObjectModel
         public void Dispose()
         {
             throw new NotImplementedException();
-        }
+        }       
     }
 }

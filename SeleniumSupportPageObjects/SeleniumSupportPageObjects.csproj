@@ -52,6 +52,8 @@
     <Compile Include="FindsByAttribute.cs" />
     <Compile Include="How.cs" />
     <Compile Include="PageFactory.cs" />
+    <Compile Include="PageObjectModel\POMTypeCreator.cs" />
+    <Compile Include="PageObjectModel\PropertiesFeaturesContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
