@@ -50,6 +50,14 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             createDefaultConstructor();
         }
 
+        private void createDefaultConstructor()
+        {
+            _ctor0 = _typeBulider.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, null);
+            ILGenerator ctorIL = _ctor0.GetILGenerator();
+            ctorIL.Emit(OpCodes.Ldarg_0);
+            ctorIL.Emit(OpCodes.Ret);
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
