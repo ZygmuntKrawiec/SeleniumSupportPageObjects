@@ -85,6 +85,45 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             _listOfAllTypes.Add(_createdType);
         }
 
+        private void generateNewProperty(PropertiesFeaturesContainer propertyFeatureContainer)
+        {
+            FieldBuilder newField = _typeBulider.DefineField("_" + propertyFeatureContainer.PropertyName, typeof(IWebElement), FieldAttributes.Private);
+            PropertyBuilder newProperty = _typeBulider.DefineProperty(
+                                                        propertyFeatureContainer.PropertyName,
+                                                        PropertyAttributes.HasDefault,
+                                                        typeof(IWebElement),
+                                                        null);
+
+            MethodAttributes getSetAttr = MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig;
+
+            MethodBuilder getNewProperty = _typeBulider.DefineMethod(
+                                                        "get_" + propertyFeatureContainer.PropertyName,
+                                                        getSetAttr,
+                                                        typeof(IWebElement),
+                                                        Type.EmptyTypes);
+
+            ILGenerator getIL = getNewProperty.GetILGenerator();
+            getIL.Emit(OpCodes.Ldarg_0);
+            getIL.Emit(OpCodes.Ldfld, newField);
+            getIL.Emit(OpCodes.Ret);
+
+            var parameterType = new Type[] { typeof(IWebElement) };
+            MethodBuilder setNewProperty = _typeBulider.DefineMethod(
+                                                        "set_" + propertyFeatureContainer.PropertyName,
+                                                        getSetAttr,
+                                                        null,
+                                                        parameterType);
+
+            ILGenerator setIL = setNewProperty.GetILGenerator();
+            setIL.Emit(OpCodes.Ldarg_0);
+            setIL.Emit(OpCodes.Ldarg_1);
+            setIL.Emit(OpCodes.Stfld, newField);
+            setIL.Emit(OpCodes.Ret);
+
+            newProperty.SetGetMethod(getNewProperty);
+            newProperty.SetSetMethod(setNewProperty);
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
