@@ -58,6 +58,18 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             ctorIL.Emit(OpCodes.Ret);
         }
 
+        public void Add(string propertyName, How how, string locator)
+        {
+            var PFContainer = new PropertiesFeaturesContainer()
+            {
+                PropertyName = propertyName,
+                How = how,
+                Locator = locator,
+            };
+
+            _listOfProperties.Add(PFContainer);
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
