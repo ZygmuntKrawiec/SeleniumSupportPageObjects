@@ -25,6 +25,31 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             _listOfAllTypes = new List<Type>();
         }
 
+        public POMTypeCreator(string newDomainName, string newTypeName, string newAssemblyName = "DefaultName")
+        {
+            if (_assemblyName == null)
+            {
+                _assemblyName = new AssemblyName(newAssemblyName);
+            }
+
+            if (_assemblyBuilder == null)
+            {
+                POMTypeCreator._assemblyBuilder = AppDomain.CurrentDomain//CreateDomain(newDomainName)
+                                                          .DefineDynamicAssembly(_assemblyName, AssemblyBuilderAccess.RunAndSave);
+            }
+
+            if (_moduleBuilder == null)
+            {
+                _moduleBuilder = _assemblyBuilder.DefineDynamicModule(_assemblyName.Name, _assemblyName.Name + ".dll");
+            }
+
+            _typeBulider = _moduleBuilder.DefineType(newTypeName, TypeAttributes.Public);
+
+            _listOfProperties = new List<PropertiesFeaturesContainer>();
+            // Create default ctor for new type.
+            createDefaultConstructor();
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
