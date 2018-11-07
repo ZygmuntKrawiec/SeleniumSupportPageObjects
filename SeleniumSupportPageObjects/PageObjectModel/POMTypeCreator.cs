@@ -127,6 +127,10 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             ConstructorInfo ctorFindsByInfo = typeof(FindsByAttribute).GetConstructor(new Type[] { typeof(How), typeof(string) });
             CustomAttributeBuilder newFindsByAttribute = new CustomAttributeBuilder(ctorFindsByInfo, new object[] { propertyFeatureContainer.How, propertyFeatureContainer.Locator });
             newProperty.SetCustomAttribute(newFindsByAttribute);
+
+            ConstructorInfo ctorCacheLookupInfo = typeof(CacheLookupAttribute).GetConstructor(Type.EmptyTypes);
+            CustomAttributeBuilder newCacheLookup = new CustomAttributeBuilder(ctorCacheLookupInfo, Type.EmptyTypes);
+            newProperty.SetCustomAttribute(newCacheLookup);
         }
 
         public void Dispose()
