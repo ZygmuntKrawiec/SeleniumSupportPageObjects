@@ -123,6 +123,10 @@ namespace SeleniumSupportPageObjects.PageObjectModel
 
             newProperty.SetGetMethod(getNewProperty);
             newProperty.SetSetMethod(setNewProperty);
+
+            ConstructorInfo ctorFindsByInfo = typeof(FindsByAttribute).GetConstructor(new Type[] { typeof(How), typeof(string) });
+            CustomAttributeBuilder newFindsByAttribute = new CustomAttributeBuilder(ctorFindsByInfo, new object[] { propertyFeatureContainer.How, propertyFeatureContainer.Locator });
+            newProperty.SetCustomAttribute(newFindsByAttribute);
         }
 
         public void Dispose()
