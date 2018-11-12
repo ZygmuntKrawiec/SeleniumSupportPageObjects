@@ -27,7 +27,7 @@ namespace SeleniumSupportPageObjects.PageObjectModel
             _listOfAllTypes = new List<Type>();
         }
 
-        public POMTypeCreator(string newDomainName, string newTypeName, string newAssemblyName = "DefaultName")
+        public POMTypeCreator(string newTypeName, string newAssemblyName = "DefaultName")
         {
             if (_assemblyName == null)
             {
