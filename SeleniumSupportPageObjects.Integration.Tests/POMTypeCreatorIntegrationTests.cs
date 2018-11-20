@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SeleniumSupportPageObjects.Integration.Tests
 {
     [TestFixture]
-    public class TestClass
+    public class POMTypeCreatorIntegrationTests
     {
         [Test]
         public void TestMethod()
